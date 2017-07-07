@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorwhite">
+
+    <LinearLayout
+        android:id="@+id/toplayout"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/inputSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="15dp"
+                android:drawableLeft="@mipmap/icon_search"
+                android:hint="Search"
+                android:inputType="textEmailAddress"
+                android:paddingRight="5dp"
+                android:textSize="15dp"
+                android:drawablePadding="@dimen/padding_10"
+                />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="5dp"
+                android:background="#ffffff" />
+        </LinearLayout>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/enter"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ENTER"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"
+            android:paddingRight="@dimen/padding_10"
+            android:layout_marginRight="@dimen/padding_10"
+            />
+    </LinearLayout>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/item_master_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+</LinearLayout>

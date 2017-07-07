@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/colorwhite">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lbl_addproduct"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/enter_no"
+            android:layout_width="@dimen/size_edittxt"
+            android:layout_height="@dimen/size_edittxt_height"
+            android:layout_weight="1"
+            android:hint="@string/lbl_edittxt"
+            android:lines="2"
+            />
+
+        <TextView
+            android:id="@+id/barcode_scanner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:text="@string/lbl_scan" />
+
+        <TextView
+            android:id="@+id/enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/lbl_enter"
+            android:textColor="@color/black"
+            />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_10"
+        android:layout_marginTop="@dimen/padding_20">
+
+        <TextView
+            android:id="@+id/lbl_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center"
+            android:text="@string/item"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/lbl_tax"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/padding_20"
+            android:layout_toLeftOf="@+id/lbl_price"
+            android:gravity="center"
+            android:text="@string/price"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/lbl_price"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/total_item"
+            android:layout_marginRight="@dimen/padding_20"
+            android:gravity="center"
+            android:text="@string/qty"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/total_item"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/padding_20"
+            android:gravity="center"
+            android:text="@string/total"
+            android:textColor="@color/black"
+            />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true" />
+
+
+    <TextView
+        android:id="@+id/lbl_transaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_transaction"
+        android:textColor="@color/black"
+        />
+
+    <RelativeLayout
+        android:id="@+id/subtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_transaction">
+
+        <TextView
+            android:id="@+id/lbl_subtotal"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_subtotal"
+            android:gravity="start"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/dollar_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/lbl_subtotal"
+            android:text="@string/Rs"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_small"
+            android:layout_marginLeft="@dimen/padding_10"
+            />
+        <TextView
+            android:id="@+id/subtotal_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dollar_sign"
+            android:text="0.0"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/black"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/tax"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subtotal">
+
+        <TextView
+            android:id="@+id/lbl1_tax"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/tax1"
+            android:gravity="end"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:id="@+id/dollar_signT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/lbl1_tax"
+            android:text="@string/Rs"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_small"
+            android:layout_marginLeft="@dimen/padding_10"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dollar_signT"
+            android:text="0.0"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/black"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tax">
+
+        <TextView
+            android:id="@+id/lbl1_total"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/lbl_total"
+            android:gravity="end"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/dollar_signTotla"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/lbl1_total"
+            android:text="@string/Rs"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/font_size_small"
+            android:layout_marginLeft="@dimen/padding_10"
+            />
+
+        <TextView
+            android:id="@+id/finalamount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/dollar_signTotla"
+            android:text="0.0"
+            android:textSize="@dimen/font_size_large"
+            android:textColor="@color/black"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        >
+
+        <Button
+            android:id="@+id/desc_per"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/desc_per"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/desc"
+            android:layout_toStartOf="@+id/desc"
+            />
+
+        <Button
+            android:id="@+id/desc"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/desc"
+            android:layout_toLeftOf="@+id/qty"
+            android:layout_toStartOf="@+id/qty" />
+
+        <Button
+            android:id="@+id/qty"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="@string/qty"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_alignBaseline="@+id/button2"
+            android:layout_alignBottom="@+id/button2"
+            android:layout_alignLeft="@+id/desc_per"
+            />
+
+        <Button
+            android:id="@+id/button2"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:layout_below="@+id/desc"
+            android:layout_toLeftOf="@+id/button3"
+            android:layout_toStartOf="@+id/button3" />
+
+        <Button
+            android:id="@+id/button3"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/qty"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="3"
+            />
+
+        <Button
+            android:id="@+id/button4"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:layout_below="@+id/button1"
+            android:layout_alignLeft="@+id/button1"
+            android:layout_alignStart="@+id/button1" />
+
+        <Button
+            android:id="@+id/button5"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button4"
+            android:layout_alignLeft="@+id/button2"
+            android:layout_alignStart="@+id/button2"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/button6"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:layout_alignBaseline="@+id/button5"
+            android:layout_alignBottom="@+id/button5"
+            android:layout_toRightOf="@+id/button2"
+            android:layout_toEndOf="@+id/button2" />
+
+        <Button
+            android:id="@+id/button7"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button4"
+            android:layout_toLeftOf="@+id/button2"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/button8"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button5"
+            android:layout_alignStart="@+id/button5"
+            android:layout_below="@+id/button5"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/button9"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button6"
+            android:layout_alignStart="@+id/button6"
+            android:layout_below="@+id/button6"
+            android:text="9" />
+
+
+
+        <Button
+            android:id="@+id/button10"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button7"
+            android:layout_toLeftOf="@+id/button2"
+            android:text="+/-" />
+
+        <Button
+            android:id="@+id/button0"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button8"
+            android:layout_alignStart="@+id/button8"
+            android:layout_below="@+id/button8"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/buttonC"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button9"
+            android:layout_alignStart="@+id/button9"
+            android:layout_below="@+id/button9"
+            android:text="." />
+
+
+        <Button
+            android:id="@+id/cash"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button10"
+            android:layout_toLeftOf="@+id/button2"
+            android:text="CASH" />
+
+        <Button
+            android:id="@+id/card"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/button0"
+            android:layout_alignStart="@+id/button0"
+            android:layout_below="@+id/button0"
+            android:text="CARD" />
+
+        <Button
+            android:id="@+id/refund"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/buttonC"
+            android:layout_alignStart="@+id/buttonC"
+            android:layout_below="@+id/buttonC"
+            android:text="REFUND" />
+
+
+        <Button
+            android:id="@+id/hold"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="hold"
+            android:layout_toLeftOf="@+id/desc_per"
+            android:layout_toStartOf="@+id/desc_per"
+            />
+
+        <Button
+            android:id="@+id/btn_copy"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="Print CPY"
+            android:layout_toLeftOf="@+id/button4"
+            android:layout_below="@+id/hold"
+            />
+        <Button
+            android:id="@+id/del"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="DEL"
+            android:layout_toLeftOf="@+id/button4"
+            android:layout_below="@+id/btn_copy"
+            />
+        <Button
+            android:id="@+id/oppay"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="OP PAY"
+            android:layout_toLeftOf="@+id/button4"
+            android:layout_below="@+id/del"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

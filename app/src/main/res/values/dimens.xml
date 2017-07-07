@@ -1,0 +1,37 @@
+<resources>
+
+    <dimen name="size_0">0.0dip</dimen>
+    <dimen name="size_10">10.0dip</dimen>
+    <dimen name="size_15">15.0dip</dimen>
+    <dimen name="size_12">12.0dip</dimen>
+    <dimen name="size_14">14.0dip</dimen>
+    <dimen name="size_16">16.0dip</dimen>
+    <dimen name="size_20">20.0dip</dimen>
+    <dimen name="size_1">1.0dip</dimen>
+    <dimen name="size_0.5">0.5dip</dimen>
+    <dimen name="size_5">5.0dip</dimen>
+
+
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_50">50dp</dimen>
+    <dimen name="recycler_size">200dp</dimen>
+    <dimen name="size_edittxt">150dp</dimen>
+    <dimen name="size_edittxt_height">50dp</dimen>
+
+
+    <dimen name="font_size_micro">12.0sp</dimen>
+    <dimen name="font_size_small">14.0sp</dimen>
+    <dimen name="font_size_medium">16.0sp</dimen>
+    <dimen name="font_size_large">18.0sp</dimen>
+    <dimen name="font_size_xlarge">20.0sp</dimen>
+    <dimen name="font_size_xxlarge">22.0sp</dimen>
+    <dimen name="font_size_xxxlarge">24.0sp</dimen>
+
+
+    <dimen name="adapter_view_item_list_padding_full">8dp</dimen>
+    <dimen name="adapter_view_item_list_text_size_8">8sp</dimen>
+
+    <dimen name="margin_5">5dp</dimen>
+
+</resources>

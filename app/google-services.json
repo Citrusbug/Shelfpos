@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "539478844934",
+    "firebase_url": "https://shelfinv.firebaseio.com",
+    "project_id": "shelfinv",
+    "storage_bucket": "shelfinv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539478844934:android:7cc3f8a17fc8906f",
+        "android_client_info": {
+          "package_name": "com.shelftastic.www.shelftastic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539478844934-t22q7v2acc2o52t7piu3h802ihogf43u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDasE5_vkuDNlOiaawKf6RQfBAQlwtUXuo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539478844934:android:50c8f00d519424a3",
+        "android_client_info": {
+          "package_name": "com.selfnv_payment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539478844934-t22q7v2acc2o52t7piu3h802ihogf43u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDasE5_vkuDNlOiaawKf6RQfBAQlwtUXuo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

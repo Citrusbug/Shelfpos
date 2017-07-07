@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    android:id="@+id/root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:orientation="vertical"
+    android:background="@drawable/layout_border"
+    android:layout_margin="@dimen/margin_5"
+    >
+
+    <FrameLayout
+        android:id="@+id/image_frame"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/item_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+        <LinearLayout
+            android:id="@+id/sub_text_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/item_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="item_desc"
+                />
+
+            <TextView
+                android:id="@+id/item_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="item_price"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8"
+
+                />
+
+            <TextView
+                android:id="@+id/item_minimum_order_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="moq"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8"
+               />
+            <TextView
+                android:id="@+id/item_minimum_display_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mdq"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8" />
+            <TextView
+                android:id="@+id/item_facings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8"
+                android:text="facing"
+            />
+            <TextView
+                android:id="@+id/item_soh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8"
+                android:text="soh"
+                />
+            <TextView
+                android:id="@+id/item_tax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8"
+                android:text="tax"
+                />
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/burgundy"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/adapter_view_item_list_text_size_8"
+                android:text="iteam_name"
+                />
+
+        </LinearLayout>
+
+
+        <ImageButton
+            android:paddingStart="@dimen/adapter_view_item_list_padding_full"
+            android:paddingTop="@dimen/adapter_view_item_list_padding_full"
+            android:paddingEnd="@dimen/adapter_view_item_list_padding_full"
+            android:paddingBottom="@dimen/adapter_view_item_list_padding_full"
+            android:layout_gravity="bottom|end"
+            android:background="@color/colorwhite"
+            android:id="@+id/item_popup_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SelfNV_payment</string>
+    <string name="lbl_addproduct">Add \nProduct : </string>
+    <string name="lbl_edittxt">Enter Item Number</string>
+    <string name="lbl_scan">SCAN</string>
+    <string name="lbl_enter">ENTER</string>
+    <string name="tax">TAX</string>
+    <string name="price">PRICE</string>
+    <string name="item">Item</string>
+    <string name="desc_per">DISC %</string>
+    <string name="desc">DISC $</string>
+    <string name="qty">QTY</string>
+    <string name="total">TOTAL</string>
+    <string name="lbl_transaction">Current Transaction</string>
+    <string name="lbl_subtotal">Subtotal :</string>
+    <string name="tax1">TAX :</string>
+    <string name="lbl_total">Total :</string>
+    <string name="lbl_disc">Discount</string>
+    <string name="hint_disc">Enter Discount</string>
+
+    <string name="Rs">$</string>
+
+
+</resources>
