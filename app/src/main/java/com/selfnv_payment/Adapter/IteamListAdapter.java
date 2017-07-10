@@ -45,13 +45,17 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     ItemModel itemModel;
 
     String radidisc_btn = "disc_per";
-    String oldqty="";
+    String oldqty = "";
     String newqty = "";
+
+
+    String oldDisc = "";
+    String newDisc = "";
 
     ITotalCount iTotalCount = null;
 
     public interface ITotalCount {
-        public void getTotal(int updateValue,float prize);
+        public void getTotal(int updateValue, float prize);
     }
 
     public IteamListAdapter(ITotalCount context, Activity act, ArrayList<ItemModel> mData) {
@@ -84,12 +88,12 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         Float productsubTotal = Constants.round(1 * Float.parseFloat(itemModel.getItemPrice()), 2);
         ((Viewholder) holder).item_total.setText("" + Float.toString(productsubTotal));
 
-        iTotalCount.getTotal(0,productsubTotal);
-
+        iTotalCount.getTotal(0, productsubTotal);
 
 
         ((Viewholder) holder).item_qty.setTag(position);
         ((Viewholder) holder).relative_item.setTag(position);
+        ((Viewholder) holder).item_disc.setTag(position);
 
         ((Viewholder) holder).item_qty.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,24 +128,50 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                                         int item = Integer.parseInt(newqty);
                                         Float productsubTotal = Constants.round(item * Float.parseFloat(data.get(Integer.parseInt("" + textView.getTag())).getItemPrice()), 2);
 
-                                        ((Viewholder) holder).item_qty.setText("" + newqty);
-                                        ((Viewholder) holder).item_total.setText("" + Float.toString(productsubTotal));
 
-                                        if (Integer.parseInt(newqty)>Integer.parseInt(oldqty)){
+                                        if (Integer.parseInt(newqty) > Integer.parseInt(oldqty)) {
 
-                                            Integer changeqty = Integer.parseInt(newqty)-Integer.parseInt(oldqty);
+                                            //set qty and totel of item
+                                            ((Viewholder) holder).item_qty.setText("" + newqty);
+                                            ((Viewholder) holder).item_total.setText("" + Float.toString(productsubTotal));
 
+                                            //count change qty
+                                            Integer changeqty = Integer.parseInt(newqty) - Integer.parseInt(oldqty);
+
+                                            //count differance amount
                                             Float changePlustotal = Constants.round(changeqty * Float.parseFloat(data.get(Integer.parseInt("" + textView.getTag())).getItemPrice()), 2);
 
-                                            iTotalCount.getTotal(+1,changePlustotal);
+                                            //if discount allready then add to changeplus total
+                                            if (!((Viewholder) holder).item_disc.getText().toString().equals("0")) {
 
-                                        } else if (Integer.parseInt(newqty)<Integer.parseInt(oldqty)){
+                                                changePlustotal = changePlustotal + Float.parseFloat(((Viewholder) holder).item_disc.getText().toString());
 
-                                            Integer changeqty = Integer.parseInt(oldqty)-Integer.parseInt(newqty);
+                                                ((Viewholder) holder).item_disc.setText("0");
+                                            }
 
+                                            iTotalCount.getTotal(+1, changePlustotal);
+
+                                        } else if (Integer.parseInt(newqty) < Integer.parseInt(oldqty)) {
+
+                                            //set qty and total
+                                            ((Viewholder) holder).item_qty.setText("" + newqty);
+                                            ((Viewholder) holder).item_total.setText("" + Float.toString(productsubTotal));
+
+                                            //count change qty
+                                            Integer changeqty = Integer.parseInt(oldqty) - Integer.parseInt(newqty);
+
+                                            //count differance amount
                                             Float changeMinustotal = Constants.round(changeqty * Float.parseFloat(data.get(Integer.parseInt("" + textView.getTag())).getItemPrice()), 2);
 
-                                            iTotalCount.getTotal(-1,changeMinustotal);
+                                            //if discount allready then minuse to changeminus total
+                                            if (!((Viewholder) holder).item_disc.getText().toString().equals("0")) {
+
+                                                changeMinustotal = changeMinustotal - Float.parseFloat(((Viewholder) holder).item_disc.getText().toString());
+
+                                                ((Viewholder) holder).item_disc.setText("0");
+                                            }
+
+                                            iTotalCount.getTotal(-1, changeMinustotal);
                                         }
                                     }
                                 }
@@ -160,12 +190,14 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         });
 
 
-        ((Viewholder) holder).relative_item.setOnClickListener(new View.OnClickListener() {
+        ((Viewholder) holder).item_disc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                final RelativeLayout relativeLayout = (RelativeLayout) view;
-                if (relativeLayout.getTag() == view.getTag()) {
+                oldDisc = ((Viewholder) holder).item_disc.getText().toString();
+
+                final TextView textView = (TextView) view;
+                if (textView.getTag() == view.getTag()) {
 
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(activity);
                     LayoutInflater inflater = activity.getLayoutInflater();
@@ -174,7 +206,7 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
                     final EditText edt = (EditText) dialogView.findViewById(R.id.discount);
 
-                    final RadioGroup radioGroup = (RadioGroup)dialogView.findViewById(R.id.radioDiscGrp);
+                    final RadioGroup radioGroup = (RadioGroup) dialogView.findViewById(R.id.radioDiscGrp);
 
                     /**
                      * radigroup checked chenge listener
@@ -183,7 +215,7 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                         @Override
                         public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
 
-                            switch(checkedId){
+                            switch (checkedId) {
                                 case R.id.disc_per:
                                     radidisc_btn = "disc_per";
                                     break;
@@ -199,30 +231,65 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
 
-                            if (!(edt.getText().toString().equals(""))){
+                            if (!(edt.getText().toString().equals(""))) {
 
-                                if (radidisc_btn.equals("disc_per")){
+                                if (radidisc_btn.equals("disc_per")) {
 
-                                    int qty = Integer.parseInt(((Viewholder)holder).item_qty.getText().toString());
+                                    int qty = Integer.parseInt(((Viewholder) holder).item_qty.getText().toString());
 
-                                    Float discount = Constants.round(qty * Float.parseFloat(data.get(Integer.parseInt("" + relativeLayout.getTag())).getItemPrice())*(Float.parseFloat(edt.getText().toString())/100), 2);
-                                    Float totalprice = Float.parseFloat(((Viewholder)holder).item_total.getText().toString()) - discount;
 
-                                    ((Viewholder)holder).item_total.setText("" + Float.toString(totalprice));
+                                    // Float totalprice = Float.parseFloat(((Viewholder) holder).item_total.getText().toString()) - discount;
+                                    Float discount = Constants.round(qty * Float.parseFloat(data.get(Integer.parseInt("" + textView.getTag())).getItemPrice()) * (Float.parseFloat(edt.getText().toString()) / 100), 2);
+                                    Float totalprice = (Float.parseFloat(((Viewholder) holder).item_qty.getText().toString()) * Float.parseFloat(data.get(Integer.parseInt("" + textView.getTag())).getItemPrice())) - discount;
 
-                                    iTotalCount.getTotal(2,discount);
+                                    ((Viewholder) holder).item_disc.setText("" + Float.toString(discount));
+                                    ((Viewholder) holder).item_total.setText("" + Float.toString(totalprice));
 
-                                }
-                                else if (radidisc_btn.equals("disc")){
+                                    if (!((Viewholder) holder).item_disc.getText().toString().equals("0")) {
 
-                                  //  int qty = Integer.parseInt(((Viewholder)holder).item_qty.getText().toString());
+                                        Float old_disc = Float.parseFloat(oldDisc);
+
+                                        if (discount > old_disc) {
+                                            discount = discount - old_disc;
+
+                                            iTotalCount.getTotal(2, discount);
+                                        } else if (old_disc > discount) {
+                                            discount = old_disc - discount;
+
+                                            iTotalCount.getTotal(3, discount);
+                                        }
+                                    } else {
+                                        iTotalCount.getTotal(2, discount);
+                                    }
+                                } else if (radidisc_btn.equals("disc")) {
+
+                                    //  int qty = Integer.parseInt(((Viewholder)holder).item_qty.getText().toString());
 
                                     Float discount = Float.parseFloat(edt.getText().toString());
-                                    Float totalprice = Float.parseFloat(((Viewholder)holder).item_total.getText().toString()) - discount;
+                                    Float totalprice = (Float.parseFloat(((Viewholder) holder).item_qty.getText().toString()) * Float.parseFloat(data.get(Integer.parseInt("" + textView.getTag())).getItemPrice())) - discount;
 
-                                    ((Viewholder)holder).item_total.setText("" + Float.toString(totalprice));
+                                    ((Viewholder) holder).item_disc.setText("" + Float.toString(discount));
+                                    ((Viewholder) holder).item_total.setText("" + Float.toString(totalprice));
 
-                                    iTotalCount.getTotal(2,discount);
+                                    //allready some discount
+                                    if (!((Viewholder) holder).item_disc.getText().toString().equals("0")) {
+
+                                        Float old_disc = Float.parseFloat(oldDisc);
+
+                                        if (discount > old_disc) {
+                                            discount = discount - old_disc;
+
+                                            iTotalCount.getTotal(2, discount);
+                                        } else if (old_disc > discount) {
+                                            discount = old_disc - discount;
+
+                                            iTotalCount.getTotal(3, discount);
+                                        }
+
+                                    }
+                                    else {
+                                        iTotalCount.getTotal(2, discount);
+                                    }
                                 }
                             }
                         }
@@ -238,28 +305,6 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 }
             }
         });
-
-
-        ((Viewholder) holder).relative_item.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                final RelativeLayout relativeLayout = (RelativeLayout) view;
-                if (relativeLayout.getTag() == view.getTag()) {
-
-                 //   ((Viewholder) holder).relative_item.setBackgroundColor(activity.getResources().getColor(R.color.purple_100));
-
-                 //   System.out.print(relativeLayout.getTag());
-
-                   // data.remove(relativeLayout.getTag());
-                  //  notifyItemRemoved(1);
-                }
-                return false;
-            }
-        });
-
-
-
     }
 
     @Override
@@ -285,6 +330,7 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         public TextView item_tax;
         public TextView item_total;
         public TextView item_qty;
+        public TextView item_disc;
         public RelativeLayout relative_item;
 
 
@@ -297,6 +343,7 @@ public class IteamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             item_tax = ButterKnife.findById(itemView, R.id.item_tax);
             item_qty = ButterKnife.findById(itemView, R.id.item_qty);
             item_total = ButterKnife.findById(itemView, R.id.item_total);
+            item_disc = ButterKnife.findById(itemView, R.id.item_disc);
             relative_item = ButterKnife.findById(itemView, R.id.relative_item);
 
         }

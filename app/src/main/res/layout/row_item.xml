@@ -19,14 +19,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_toLeftOf="@+id/item_qty"
-        android:layout_marginRight="@dimen/padding_20"
+        android:layout_marginRight="@dimen/padding_10"
         android:text="price" />
 
     <TextView
         android:id="@+id/item_tax"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/padding_20"
+        android:layout_marginRight="@dimen/padding_10"
         android:gravity="center"
         android:text="tax"
         android:visibility="gone"/>
@@ -35,14 +35,24 @@
         android:id="@+id/item_qty"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/item_total"
+        android:layout_toLeftOf="@+id/item_disc"
         android:gravity="center"
-        android:layout_marginRight="@dimen/padding_20"
+        android:layout_marginRight="@dimen/padding_10"
         android:text="1" />
 
     <TextView
+        android:id="@+id/item_disc"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/item_total"
+        android:layout_marginRight="@dimen/padding_10"
+        android:gravity="center"
+        android:text="0"
+        />
+
+    <TextView
         android:id="@+id/item_total"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"

@@ -22,7 +22,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,15 +31,12 @@ import com.selfnv_payment.Adapter.IteamListAdapter;
 import com.selfnv_payment.Listner.ActivityCommunicator;
 import com.selfnv_payment.Model.ItemModel;
 import com.selfnv_payment.R;
-
 import com.selfnv_payment.utilities.Constants;
 import com.selfnv_payment.utilities.ContractData;
 import com.selfnv_payment.utilities.Pref;
 import com.selfnv_payment.zxing.IntentIntegrator;
 import com.selfnv_payment.zxing.IntentResult;
-
 import java.util.ArrayList;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -103,6 +99,8 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
     Button button9;
     @Bind(R.id.button0)
     Button button0;
+    @Bind(R.id.del)
+    Button del;
 
     @Bind(R.id.subtotal_amount)
     TextView subtotal_amount;
@@ -249,14 +247,12 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
     void btn1() {
         if (evalue.equals("1"))
             enter_no.setText(enter_no.getText() + "1");
-
     }
 
     @OnClick(R.id.button2)
     void btn2() {
         if (evalue.equals("1"))
             enter_no.setText(enter_no.getText() + "2");
-
     }
 
     @OnClick(R.id.button3)
@@ -270,7 +266,6 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
     void btn4() {
         if (evalue.equals("1"))
             enter_no.setText(enter_no.getText() + "4");
-
     }
 
     @OnClick(R.id.button5)
@@ -284,7 +279,6 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
     void btn6() {
         if (evalue.equals("1"))
             enter_no.setText(enter_no.getText() + "6");
-
     }
 
     @OnClick(R.id.button7)
@@ -312,7 +306,17 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
     void btn0() {
         if (evalue.equals("1"))
             enter_no.setText(enter_no.getText() + "0");
+    }
 
+    @OnClick(R.id.del)
+    void Del(){
+
+        if (iteamListAdapter != null) {
+            totalAmount = 0;
+            subtotal_amount.setText("0.0" );
+            finalamountText.setText("0.0");
+            rv.setAdapter(null);
+        }
     }
 
     /**
@@ -355,9 +359,7 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
 
             mItemNumber = scanContent;
 
-
             addItemTOLIst(mItemNumber);
-
 
         } else {
             Toast toast = Toast.makeText(getActivity(),
@@ -538,10 +540,17 @@ public class IteamDetailFragment extends Fragment implements IteamListAdapter.IT
             totalAmount += prize;
         }
         /**
-         * discount
+         * discount minus
          */
         else if(updateValue == 2){
             totalAmount -= prize;
+        }
+
+        /**
+         * discount plus
+         */
+        else if(updateValue == 3){
+            totalAmount += prize;
         }
 
         totalAmount = Constants.round(totalAmount, 2);

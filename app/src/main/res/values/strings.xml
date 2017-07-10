@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SelfNV_payment</string>
+    <string name="app_name">SelfPOS</string>
     <string name="lbl_addproduct">Add \nProduct : </string>
     <string name="lbl_edittxt">Enter Item Number</string>
     <string name="lbl_scan">SCAN</string>
@@ -16,6 +16,7 @@
     <string name="tax1">TAX :</string>
     <string name="lbl_total">Total :</string>
     <string name="lbl_disc">Discount</string>
+    <string name="lbl_disc1">DISC</string>
     <string name="hint_disc">Enter Discount</string>
 
     <string name="Rs">$</string>
